@@ -2,11 +2,13 @@
 services:
   umami:
     image: ghcr.io/umami-software/umami:latest
+    networks:
+      - umami-network
     ports:
-      - "3000:3000"
+      - "61201:3000"
     environment:
       DATABASE_URL: postgresql://umami:umami@db:5432/umami
-      APP_SECRET: replace-me-with-a-random-string
+      APP_SECRET: 1X0Sb7RnQvouvgzH
     depends_on:
       db:
         condition: service_healthy
@@ -19,10 +21,12 @@ services:
       retries: 5
   db:
     image: postgres:15-alpine
+    networks:
+      - umami-network
     environment:
       POSTGRES_DB: umami
-      POSTGRES_USER: umami
-      POSTGRES_PASSWORD: umami
+      POSTGRES_USER: umami4609
+      POSTGRES_PASSWORD: 46095a51746c900d
     volumes:
       - umami-db-data:/var/lib/postgresql/data
     restart: always
