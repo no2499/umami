@@ -7,7 +7,7 @@ services:
     ports:
       - "61201:3000"
     environment:
-      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      DATABASE_URL: postgresql://umami4609:46095a51746c900d@db:5432/umami
       APP_SECRET: 1X0Sb7RnQvouvgzH
     depends_on:
       db:
@@ -35,5 +35,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+networks:
+  umami-network:
+    driver: bridge
 volumes:
   umami-db-data:
